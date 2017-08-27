@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title>preload</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<style>
+*{margin: 0px;padding: 0px;}
+
+.content .aaa{height: 1000px;margin: 20px 0;background: pink; width: 100%;}
+.content img{width: 100%;display: block;}
+</style>
+</head>
+<body>
+<div class="content" id="JLoad">
+    <div class="aaa"></div>
+    <img src="" lazy-src="http://fpoimg.com/400x400" alt="" />
+    <div class="aaa"></div>
+    <img src="" lazy-src="http://fpoimg.com/400x400" alt="" />
+    <div class="aaa"></div>
+    <img src="" lazy-src="http://fpoimg.com/400x400" alt="" />
+    <div class="aaa"></div>
+    <img src="" lazy-src="http://fpoimg.com/400x400" alt="" />
+    <div class="aaa" id="Jtest1"></div>
+    <div class="aaa" id="Jtest2"></div>
+</div>
+
+
+<script src="lazy.js"></script>
+<script type="text/javascript">
+var lazyObj = Lazy.create({
+    jsList: [{
+        id: 'Jtest1',
+        js: function() {
+            console.log('Jtest1')
+        }
+    }, {
+        id: 'Jtest2',
+        js: 'alert(\'test2\')'
+    }],
+    target: 'JLoad',
+    imgSrc: 'lazy-src',
+    offset: 100,
+    delay: 100,
+    delay_ot: 1000,
+    imgLoad: function(element, width, height) {
+        console.log(element, width, height)
+    }
+})
+Lazy.init(lazyObj)
+</script>
+</body>
+</html>
